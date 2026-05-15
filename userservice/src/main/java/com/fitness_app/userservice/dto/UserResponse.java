@@ -8,7 +8,6 @@ import lombok.Data;
 public class UserResponse {
     private String userId;
     private String email;
-    private String password;
     private String firstName;
     private String lastName;
     private LocalDateTime createdAt = LocalDateTime.now();

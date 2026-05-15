@@ -1,4 +1,4 @@
-package com.fitness_app.userservice.module;
+package com.fitness_app.userservice.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
