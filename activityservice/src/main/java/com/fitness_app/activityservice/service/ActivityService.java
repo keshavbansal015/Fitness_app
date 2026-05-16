@@ -1,5 +1,8 @@
 package com.fitness_app.activityservice.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fitness_app.activityservice.dto.ActivityRequest;
 import com.fitness_app.activityservice.dto.ActivityResponse;
 import com.fitness_app.activityservice.model.Activity;
@@ -47,5 +50,19 @@ public class ActivityService {
         response.setCreatedAt(activity.getCreatedAt());
         response.setUpdatedAt(activity.getUpdatedAt());
         return response;
+    }
+
+    public List<ActivityResponse> getUserActivities(String userId) {
+        List<Activity> activities = activityRepository.findByUserId(userId);
+        return activities.stream()
+                .map(this::mapToResponse)
+                .collect(Collectors.toList());
+    }
+
+    public ActivityResponse getActivityById(String activityId) {
+        @SuppressWarnings("null")
+        Activity activity = activityRepository.findById(activityId)
+                .orElseThrow(() -> new RuntimeException("Activity not found"));
+        return mapToResponse(activity);
     }
 }
