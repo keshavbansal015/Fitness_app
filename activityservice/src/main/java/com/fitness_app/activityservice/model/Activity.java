@@ -11,6 +11,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import jakarta.annotation.Generated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 
@@ -20,13 +21,15 @@ import lombok.Builder;
 @AllArgsConstructor
 public class Activity {
     @Id
+    @Generated("uuid")
     private String id;
     private String userId;
     private ActivityType type;
     private Integer duration;
     private Integer time;
-    private Integer calories;
+    private Integer caloriesBurned;
     private LocalDateTime startTime;
+    private LocalDateTime endTime;
 
     @Field("metrics")
     private Map<String, Object> additionalMetrics;
